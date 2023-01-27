@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -35,15 +36,17 @@ public class Main {
         Consumer<String> welcome1 = s -> System.out.println("Привет " + s);
 
 
-        Function<Double, Long> rounding = new Function<Double, Long>() {
+
+        Function<Double, Long> rounding = new Function<>(){
             @Override
             public Long apply(Double aDouble) {
-                return null;
+                bLong = aDouble;
+                return bLong;
             }
         };
 
 
-        Function<Double, Long> rounding1 = aDouble -> null;
+        Function<Double, Long> rounding1 = aDouble -> bLong;
 
 
         Supplier<Integer> number = new Supplier<Integer>() {
@@ -63,26 +66,44 @@ public class Main {
 
 
 
-        public static <T, U> Function<T, U> ternaryOperator();{
+        ArrayList<Integer> evenNum = new ArrayList<>();
+        ArrayList<Integer> noEvenNum = new ArrayList<>();
+
+        Predicate<Integer> condition = new Predicate<Integer>() {
+            @Override
+            public boolean test(Integer integer) {
+                if (integer % 2 == 0) {
+                    return true;
+                }
+                return false;
+            }
+        };
+
+        Function<Integer, ArrayList> ifTrue = new Function<>() {
+            @Override
+            public ArrayList apply(Integer integer) {
+                evenNum.add(integer);
+                return evenNum;
+
+            }
+        };
 
 
-            Predicate<? super T> condition = (Predicate<T>) t -> false;
+        Function<Integer, ArrayList> ifFalse = new Function<>() {
+            @Override
+            public ArrayList apply(Integer integer) {
+                noEvenNum.add(integer);
+                return noEvenNum;
+            }
 
-            Function<? super T, ? extends U> ifTrue = (Function<T, U>) t -> null;
-
-            Function<? super T, ? extends U> ifFalse = (Function<T, U>) t -> null;
-
-
-            if (condition.test(T t)){
-                return ifTrue(T, U);
-            } else return ifFalse(T, U);
+        };
 
 
-        }
 
     }
 
-    private static Object ternaryOperator() {
-        return null;
-    }
 }
+
+
+
+
