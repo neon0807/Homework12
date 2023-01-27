@@ -40,13 +40,12 @@ public class Main {
         Function<Double, Long> rounding = new Function<>(){
             @Override
             public Long apply(Double aDouble) {
-                bLong = aDouble;
-                return bLong;
+                return aDouble.longValue();
             }
         };
 
 
-        Function<Double, Long> rounding1 = aDouble -> bLong;
+        Function<Double, Long> rounding1 = Double::longValue;
 
 
         Supplier<Integer> number = new Supplier<Integer>() {
@@ -69,38 +68,35 @@ public class Main {
         ArrayList<Integer> evenNum = new ArrayList<>();
         ArrayList<Integer> noEvenNum = new ArrayList<>();
 
-        Predicate<Integer> condition = new Predicate<Integer>() {
-            @Override
-            public boolean test(Integer integer) {
-                if (integer % 2 == 0) {
-                    return true;
-                }
-                return false;
+        Predicate<Integer> condition = integer -> {
+            if (integer % 2 == 0) {
+                return true;
             }
+            return false;
         };
 
-        Function<Integer, ArrayList> ifTrue = new Function<>() {
-            @Override
-            public ArrayList apply(Integer integer) {
-                evenNum.add(integer);
-                return evenNum;
+        Function<Integer, ArrayList> ifTrue = integer -> {
+            evenNum.add(integer);
+            return evenNum;
 
-            }
         };
 
 
-        Function<Integer, ArrayList> ifFalse = new Function<>() {
-            @Override
-            public ArrayList apply(Integer integer) {
-                noEvenNum.add(integer);
-                return noEvenNum;
-            }
-
+        Function<Integer, ArrayList> ifFalse = integer -> {
+            noEvenNum.add(integer);
+            return noEvenNum;
         };
-
 
 
     }
+    public static <T, U> Function<T,U> ternaryOperator(Predicate<Integer> condition,
+                                                       Function<Integer,ArrayList> ifTrue,
+                                                       Function<Integer, ArrayList> ifFalse){
+        if (condition.test(35)){
+            ifTrue.apply(35);
+        }else ifFalse.apply(35);
+        return null;
+    };
 
 }
 
